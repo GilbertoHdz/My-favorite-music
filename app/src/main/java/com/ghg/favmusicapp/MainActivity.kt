@@ -1,4 +1,4 @@
-package com.gilbertohdz.myfavoritemusic
+package com.ghg.favmusicapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

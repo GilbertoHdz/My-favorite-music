@@ -1,4 +1,4 @@
-package com.gilbertohdz.myfavoritemusic
+package com.ghg.favmusicapp.data
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
   fun useAppContext() {
     // Context of the app under test.
     val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-    assertEquals("com.gilbertohdz.myfavoritemusic", appContext.packageName)
+    assertEquals("com.gilbertohdz.data.test", appContext.packageName)
   }
 }

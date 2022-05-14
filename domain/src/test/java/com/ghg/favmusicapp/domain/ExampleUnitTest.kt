@@ -1,4 +1,4 @@
-package com.gilbertohdz.myfavoritemusic
+package com.ghg.favmusicapp.domain
 
 import org.junit.Test
 

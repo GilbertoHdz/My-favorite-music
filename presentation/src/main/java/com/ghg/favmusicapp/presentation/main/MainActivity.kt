@@ -1,11 +1,12 @@
-package com.ghg.favmusicapp
+package com.ghg.favmusicapp.presentation.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.ghg.favmusicapp.presentation.R
 
 class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
+    setContentView(R.layout.main)
   }
 }

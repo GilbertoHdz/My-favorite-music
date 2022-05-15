@@ -1,35 +1,33 @@
 package com.ghg.favmusicapp.presentation.search
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
 import com.ghg.favmusicapp.presentation.R
+import com.ghg.favmusicapp.presentation.base.BaseFragment
+import com.ghg.favmusicapp.presentation.databinding.SearchBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.reflect.KClass
 
 @AndroidEntryPoint
-class SearchFragment : Fragment() {
+class SearchFragment : BaseFragment<SearchBinding, SearchViewData, SearchViewModel>() {
 
-  private val searchViewModel: SearchViewModel by viewModels()
+  override val layoutId = R.layout.search
 
+  override val viewModelClass: KClass<SearchViewModel> = SearchViewModel::class
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-  }
-
-  override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
+  override fun bindViewModel(
+    viewModel: SearchViewModel,
     savedInstanceState: Bundle?
-  ): View? {
-    // Inflate the layout for this fragment
-    return inflater.inflate(R.layout.search, container, false)
+  ) {
+    super.bindViewModel(viewModel, savedInstanceState)
   }
 
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-    searchViewModel.getSearchResult()
+  override fun initView(
+    binding: SearchBinding,
+    viewData: SearchViewData,
+    savedInstanceState: Bundle?,
+    viewLifecycleOwner: LifecycleOwner
+  ) {
+    super.initView(binding, viewData, savedInstanceState, viewLifecycleOwner)
   }
 }

@@ -10,17 +10,22 @@
             type="com.ghg.favmusicapp.presentation.search.SearchViewData" />
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".search.SearchFragment">
 
         <Button
-            android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{ v -> model.onclicked.invoke()}"
-            android:text="Button" />
+            android:text="onclicked" />
 
-    </FrameLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{ v -> model.navigateToDetail.invoke()}"
+            android:text="navigateToDetail" />
+    </LinearLayout>
 </layout>

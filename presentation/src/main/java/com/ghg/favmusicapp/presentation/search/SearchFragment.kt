@@ -2,8 +2,10 @@ package com.ghg.favmusicapp.presentation.search
 
 import android.os.Bundle
 import androidx.lifecycle.LifecycleOwner
+import androidx.navigation.fragment.findNavController
 import com.ghg.favmusicapp.presentation.R
 import com.ghg.favmusicapp.presentation.base.BaseFragment
+import com.ghg.favmusicapp.presentation.common.observeEvent
 import com.ghg.favmusicapp.presentation.databinding.SearchBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.reflect.KClass
@@ -20,6 +22,7 @@ class SearchFragment : BaseFragment<SearchBinding, SearchViewData, SearchViewMod
     savedInstanceState: Bundle?
   ) {
     super.bindViewModel(viewModel, savedInstanceState)
+    viewModel.navigation.observeEvent(this, ::handleNavigation)
   }
 
   override fun initView(
@@ -29,5 +32,15 @@ class SearchFragment : BaseFragment<SearchBinding, SearchViewData, SearchViewMod
     viewLifecycleOwner: LifecycleOwner
   ) {
     super.initView(binding, viewData, savedInstanceState, viewLifecycleOwner)
+  }
+
+  private fun handleNavigation(target: SearchViewModel.NavigationTarget) {
+    when (target) {
+      is SearchViewModel.NavigationTarget.GoResultDetail -> {
+        findNavController().navigate(
+          SearchFragmentDirections.actionToResultDetail(target.detail)
+        )
+      }
+    }
   }
 }

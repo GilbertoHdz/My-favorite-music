@@ -9,5 +9,19 @@
         android:id="@+id/searchFragment"
         android:name="com.ghg.favmusicapp.presentation.search.SearchFragment"
         android:label="search"
-        tools:layout="@layout/search" />
+        tools:layout="@layout/search" >
+        <action
+            android:id="@+id/actionToResultDetail"
+            app:destination="@id/resultDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/resultDetailFragment"
+        android:name="com.ghg.favmusicapp.presentation.resultdetail.ResultDetailFragment"
+        android:label="resultDetail"
+        tools:layout="@layout/result_detail" >
+        <argument
+            android:name="detail"
+            app:argType="com.ghg.favmusicapp.domain.models.itunes.ResultDetail" />
+    </fragment>
 </navigation>

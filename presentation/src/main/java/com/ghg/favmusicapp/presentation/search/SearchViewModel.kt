@@ -1,10 +1,13 @@
 package com.ghg.favmusicapp.presentation.search
 
 import android.util.Log
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.ghg.favmusicapp.domain.interactor.GetSearchInteractor
+import com.ghg.favmusicapp.domain.models.itunes.ResultDetail
 import com.ghg.favmusicapp.presentation.base.BaseViewModel
+import com.ghg.favmusicapp.presentation.common.Event
+import com.ghg.favmusicapp.presentation.common.postEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
@@ -19,11 +22,14 @@ class SearchViewModel @Inject constructor(
 
   override val viewData by lazy {
     SearchViewData(
-      onclicked = { getSearchResult() }
+      onclicked = { getSearchResult() },
+      navigateToDetail = {  navToResultDetail(ResultDetail("jack johnson")) }
     )
   }
 
-  fun getSearchResult(query: String = "jack johnson") {
+  val navigation = MutableLiveData<Event<NavigationTarget>>()
+
+  private fun getSearchResult(query: String = "jack johnson") {
     getSearchInteractor.execute(query)
       .catch {
         Log.i("GIL", "Error")
@@ -35,5 +41,13 @@ class SearchViewModel @Inject constructor(
         Log.i("GIL", "Complete")
       }
       .launchIn(viewModelScope)
+  }
+
+  private fun navToResultDetail(result: ResultDetail) {
+    navigation.postEvent(NavigationTarget.GoResultDetail(result))
+  }
+
+  sealed class NavigationTarget {
+    class GoResultDetail(val detail: ResultDetail) : NavigationTarget()
   }
 }

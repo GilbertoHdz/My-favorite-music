@@ -6,5 +6,5 @@ import javax.inject.Inject
 class GetSearchInteractor @Inject constructor(
   private val itunesRepository: ItunesRepository
 ) {
-  suspend fun executeSuspend(query: String) = itunesRepository.getSearchResult(query)
+  fun execute(query: String) = itunesRepository.getSearchResult(query)
 }

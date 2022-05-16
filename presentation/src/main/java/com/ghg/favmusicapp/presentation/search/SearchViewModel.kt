@@ -29,6 +29,10 @@ class SearchViewModel @Inject constructor(
 
   val navigation = MutableLiveData<Event<NavigationTarget>>()
 
+  init {
+    getSearchResult()
+  }
+
   private fun getSearchResult(query: String = "jack johnson") {
     getSearchInteractor.execute(query)
       .catch {

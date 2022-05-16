@@ -16,39 +16,55 @@
         android:orientation="vertical"
         tools:context=".search.SearchFragment">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/resultDetailAppBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/resultDetailToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="@string/result_detail_preview"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary" />
+        </com.google.android.material.appbar.AppBarLayout>
+
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/resultDetailArtist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:text="@string/result_detail_artist"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            app:layout_constraintBottom_toBottomOf="@+id/resultDetailArtworkUrl"
-            app:layout_constraintStart_toEndOf="@+id/resultDetailArtworkUrl"
-            app:layout_constraintTop_toTopOf="@+id/resultDetailArtworkUrl"
+            app:layout_constraintBottom_toBottomOf="@id/resultDetailArtworkUrl"
+            app:layout_constraintStart_toEndOf="@id/resultDetailArtworkUrl"
+            app:layout_constraintTop_toTopOf="@id/resultDetailArtworkUrl"
             app:layout_constraintVertical_bias="0.25" />
 
         <TextView
             android:id="@+id/resultDetailArtistName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:text="@{model.detail.artistName}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/textView5"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            app:layout_constraintStart_toStartOf="@id/resultDetailArtist"
+            app:layout_constraintTop_toBottomOf="@id/resultDetailArtist"
             tools:text="Artist name" />
 
         <ImageView
             android:id="@+id/resultDetailArtworkUrl"
             android:layout_width="80dp"
             android:layout_height="100dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/medium_margin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/resultDetailAppBarLayout"
             app:urlGlide="@{model.detail.artworkUrl100}"
             tools:src="@tools:sample/avatars" />
 
@@ -56,24 +72,24 @@
             android:id="@+id/resultDetailDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:text="@{model.detail.longDescription}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/resultDetailTopGideline"
+            app:layout_constraintTop_toTopOf="@id/resultDetailTopGideline"
             tools:text="Song Description" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/resultDetailAbout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
             android:text="@string/result_detail_about"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            app:layout_constraintBottom_toTopOf="@+id/resultDetailTopGideline"
+            app:layout_constraintBottom_toTopOf="@id/resultDetailTopGideline"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
@@ -81,11 +97,11 @@
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/normal_margin"
             android:onClick="@{ v -> model.goToWebsite.invoke(model.detail.collectionViewUrl)}"
             android:text="@string/result_detail_go_website"
-            app:layout_constraintEnd_toEndOf="@+id/resultDetailDescription"
-            app:layout_constraintTop_toBottomOf="@+id/resultDetailDescription"
+            app:layout_constraintEnd_toEndOf="@id/resultDetailDescription"
+            app:layout_constraintTop_toBottomOf="@id/resultDetailDescription"
             tools:text="More detail" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -100,6 +116,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="202dp" />
+            app:layout_constraintGuide_percent="0.27" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

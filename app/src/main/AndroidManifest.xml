@@ -14,6 +14,7 @@
         android:theme="@style/Theme.MyFavoriteMusic">
         <activity
             android:name=".presentation.main.MainActivity"
+            android:theme="@style/Theme.MyFavoriteMusic.NoActionBar"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

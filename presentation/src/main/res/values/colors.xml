@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorPrimary">@color/color_500</color>
+    <color name="colorOnPrimary">@color/white</color>
+    <color name="colorSecondary">@color/teal_200</color>
+    <color name="colorOnSecondary">@color/black</color>
+    <color name="textColorPrimary">@color/black</color>
+    <color name="textColorSecondary">@color/black_900</color>
+    <color name="textColorTertiary">@color/black_800</color>
+
     <color name="color_200">#808080</color>
     <color name="color_500">#000000</color>
     <color name="color_700">#000000</color>
@@ -7,4 +15,12 @@
     <color name="teal_700">#000000</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="black_800">#37474F</color> <!--Color surface (dark)-->
+    <!--Color on secondary (light), color on background (light),-->
+    <!--color on surface (light)-->
+    <color name="black_900">#212121</color>
+
+    <color name="red_200">#cf6679</color> <!--Color error (dark)-->
+    <color name="red_600">#b00020</color> <!--Color error (light)-->
 </resources>

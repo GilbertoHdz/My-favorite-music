@@ -81,11 +81,11 @@
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:onClick="@{ v -> model.goToWebsite.invoke(model.detail.collectionViewUrl)}"
             android:text="@string/result_detail_go_website"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/resultDetailBottomGideline"
+            app:layout_constraintEnd_toEndOf="@+id/resultDetailDescription"
+            app:layout_constraintTop_toBottomOf="@+id/resultDetailDescription"
             tools:text="More detail" />
 
         <androidx.constraintlayout.widget.Guideline

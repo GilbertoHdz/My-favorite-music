@@ -34,6 +34,7 @@ class SearchViewModel @Inject constructor(
       .catch {
         viewData.errorMessage.postValue(errorHandler.process(it))
         viewData.isVisibleErrorView.postValue(true)
+        viewData.searchResult.postValue(emptyList())
       }
       .mapLatest {
         if (it.isEmpty()) {

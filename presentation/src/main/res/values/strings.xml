@@ -7,4 +7,8 @@
     <string name="result_detail_preview">Preview</string>
 
     <string name="search_toolbar_search">Search</string>
+
+    <string name="error_internet_connection">No internet connection. Please check your connection and try again.</string>
+    <string name="error_something_went_wrong">Something went wrong, please try again.</string>
+    <string name="search_no_results">No results</string>
 </resources>

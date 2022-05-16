@@ -1,23 +1,22 @@
 package com.ghg.favmusicapp.presentation.search
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.ghg.favmusicapp.domain.interactor.GetSearchInteractor
 import com.ghg.favmusicapp.domain.models.itunes.ResultDetail
 import com.ghg.favmusicapp.presentation.base.BaseViewModel
 import com.ghg.favmusicapp.presentation.common.Event
+import com.ghg.favmusicapp.presentation.common.handler.error.ErrorHandler
+import com.ghg.favmusicapp.presentation.common.handler.error.ErrorType
 import com.ghg.favmusicapp.presentation.common.postEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.mapLatest
-import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-  private val getSearchInteractor: GetSearchInteractor
+  private val getSearchInteractor: GetSearchInteractor,
+  private val errorHandler: ErrorHandler
 ) : BaseViewModel<SearchViewData>() {
 
   override val viewData by lazy {
@@ -31,14 +30,20 @@ class SearchViewModel @Inject constructor(
 
   private fun getSearchResult(query: String) {
     getSearchInteractor.execute(query)
+      .onStart { viewData.isLoading.postValue(true) }
       .catch {
-        it.printStackTrace()
+        viewData.errorMessage.postValue(errorHandler.process(it))
+        viewData.isVisibleErrorView.postValue(true)
       }
       .mapLatest {
+        if (it.isEmpty()) {
+          viewData.errorMessage.postValue(ErrorType.NO_RESULT)
+        }
         viewData.searchResult.postValue(it)
+        viewData.isVisibleErrorView.postValue(it.isEmpty())
       }
       .onCompletion {
-        Log.i(TAG, "Complete")
+        viewData.isLoading.postValue(false)
       }
       .launchIn(viewModelScope)
   }

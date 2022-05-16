@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View" />
 
         <variable
             name="model"
@@ -46,14 +47,34 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/searchResultList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{model.searchResult.isEmpty() ? View.GONE : View.VISIBLE }"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:layout_constraintTop_toBottomOf="@id/searchAppBar"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:listitem="@layout/search_item"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchAppBar"
+            tools:listitem="@layout/search_item"
+            tools:visibility="gone" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="@{model.searchResult.isEmpty() ? View.VISIBLE : View.GONE }"
+            android:gravity="center"
+            android:text="@string/search_no_results"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:errorText="@{model.errorMessage}"
+            />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{model.isLoading() ? View.VISIBLE : View.GONE }"
+            android:layout_gravity="center" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

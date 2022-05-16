@@ -11,7 +11,7 @@ fun SearchResponse.toDomain() : List<ResultDetail> {
       result.artistName,
       result.trackName,
       result.collectionName ?: "No collection",
-      result.artworkUrl60,
+      result.artworkUrl100,
       result.primaryGenreName,
       result.shortDescription ?: "No description",
       result.longDescription ?: "No description",

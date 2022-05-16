@@ -7,7 +7,7 @@ data class ResultModel(
   val artistName: String,
   val trackName: String,
   val collectionName: String?,
-  val artworkUrl60: String,
+  val artworkUrl100: String,
   val primaryGenreName: String,
   val shortDescription: String?,
   val longDescription: String?,

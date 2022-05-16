@@ -36,6 +36,7 @@ class SearchFragment : BaseFragment<SearchBinding, SearchViewData, SearchViewMod
     super.initView(binding, viewData, savedInstanceState, viewLifecycleOwner)
     viewData.searchResult.observe(viewLifecycleOwner) { result -> adapter.submitList(result) }
     binding.searchResultList.adapter = adapter
+    adapter.handleSongItemClicks(viewData.navigateToDetail)
   }
 
   private fun handleNavigation(target: SearchViewModel.NavigationTarget) {

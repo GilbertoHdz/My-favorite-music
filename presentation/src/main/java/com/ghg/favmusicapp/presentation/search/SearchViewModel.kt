@@ -22,29 +22,23 @@ class SearchViewModel @Inject constructor(
 
   override val viewData by lazy {
     SearchViewData(
-      onclicked = { getSearchResult() },
+      onSearch = { getSearchResult(it) },
       navigateToDetail = {  navToResultDetail(it) }
     )
   }
 
   val navigation = MutableLiveData<Event<NavigationTarget>>()
 
-  init {
-    getSearchResult()
-  }
-
-  private fun getSearchResult(query: String = "jack johnson") {
+  private fun getSearchResult(query: String) {
     getSearchInteractor.execute(query)
       .catch {
         it.printStackTrace()
-        Log.i("GIL", "Error")
       }
       .mapLatest {
         viewData.searchResult.postValue(it)
-        Log.i("GIL", "Result: ${it.size}")
       }
       .onCompletion {
-        Log.i("GIL", "Complete")
+        Log.i(TAG, "Complete")
       }
       .launchIn(viewModelScope)
   }
@@ -55,5 +49,9 @@ class SearchViewModel @Inject constructor(
 
   sealed class NavigationTarget {
     class GoResultDetail(val detail: ResultDetail) : NavigationTarget()
+  }
+
+  companion object {
+    private const val TAG = "SearchViewModel"
   }
 }

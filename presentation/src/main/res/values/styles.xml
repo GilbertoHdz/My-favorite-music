@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <style name="Theme.ActionModeTheme" parent="@style/Widget.AppCompat.Light.ActionMode.Inverse">
+        <item name="android:background">@drawable/abc_cab_background_top_material</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="actionMenuTextColor">@color/white</item>
+        <item name="actionModeBackground">@drawable/abc_cab_background_top_material</item>
+    </style>
 </resources>

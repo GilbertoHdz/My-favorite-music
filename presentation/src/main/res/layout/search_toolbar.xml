@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/inventoryComponentSearchToolbarLayout"
+        android:id="@+id/searchToolbarContainer"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="@dimen/xlarge_margin"
@@ -34,7 +34,7 @@
                 app:tint="@color/textColorSecondary" />
 
             <TextView
-                android:id="@+id/inventoryComponentSearchToolbarLabel"
+                android:id="@+id/searchToolbarLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/normal_margin"

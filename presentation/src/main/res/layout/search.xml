@@ -36,7 +36,9 @@
                     android:layout_marginBottom="16dp"
                     android:orientation="vertical">
 
-                    <include layout="@layout/search_toolbar" />
+                    <include
+                        android:id="@+id/searchToolbarLayout"
+                        layout="@layout/search_toolbar" />
                 </FrameLayout>
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>

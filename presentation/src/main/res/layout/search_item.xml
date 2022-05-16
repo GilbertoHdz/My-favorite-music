@@ -11,46 +11,84 @@
             type="com.ghg.favmusicapp.domain.models.itunes.ResultDetail" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/searchItemCardContainer"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        app:cardElevation="2dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/searchItemCardContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginEnd="@dimen/medium_margin"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardElevation="2dp">
 
-            <TextView
-                android:id="@+id/searchItemArtistName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{item.artistName}"
-                tools:text="Artist name" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="380dp"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/searchItemTrackName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{item.trackName}"
-                tools:text="Track name" />
+                <ImageView
+                    android:id="@+id/searchItemArtwork"
+                    android:layout_width="75dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:layout_marginBottom="@dimen/small_margin"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/searchItemGuideline"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:urlGlide="@{item.artworkUrl100}"
+                    tools:srcCompat="@tools:sample/avatars" />
 
-            <TextView
-                android:id="@+id/searchItemGenreName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{item.primaryGenreName}"
-                tools:text="Genre name" />
+                <TextView
+                    android:id="@+id/searchItemArtistName"
+                    android:layout_width="248dp"
+                    android:layout_height="19dp"
+                    android:text="@{item.artistName}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    app:layout_constraintBottom_toTopOf="@+id/searchItemTrackName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/searchItemGuideline"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Artist name" />
 
-            <ImageView
-                android:id="@+id/searchItemArtwork"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                tools:srcCompat="@tools:sample/avatars" />
+                <TextView
+                    android:id="@+id/searchItemTrackName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{item.trackName}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    app:layout_constraintBottom_toTopOf="@id/searchItemGenreName"
+                    app:layout_constraintEnd_toEndOf="@id/searchItemArtistName"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@id/searchItemArtistName"
+                    app:layout_constraintTop_toBottomOf="@id/searchItemArtistName"
+                    tools:text="Track name" />
 
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+                <TextView
+                    android:id="@+id/searchItemGenreName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{item.primaryGenreName}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/searchItemTrackName"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@id/searchItemTrackName"
+                    app:layout_constraintTop_toBottomOf="@id/searchItemTrackName"
+                    tools:text="Genre name" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/searchItemGuideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.25" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
 </layout>

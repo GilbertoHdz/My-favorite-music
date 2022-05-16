@@ -23,7 +23,7 @@ class SearchViewModel @Inject constructor(
   override val viewData by lazy {
     SearchViewData(
       onclicked = { getSearchResult() },
-      navigateToDetail = {  navToResultDetail(ResultDetail("jack johnson")) }
+      navigateToDetail = {  navToResultDetail(it) }
     )
   }
 
@@ -32,9 +32,11 @@ class SearchViewModel @Inject constructor(
   private fun getSearchResult(query: String = "jack johnson") {
     getSearchInteractor.execute(query)
       .catch {
+        it.printStackTrace()
         Log.i("GIL", "Error")
       }
       .mapLatest {
+        viewData.searchResult.postValue(it)
         Log.i("GIL", "Result: ${it.size}")
       }
       .onCompletion {

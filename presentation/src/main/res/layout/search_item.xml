@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.ghg.favmusicapp.domain.models.itunes.ResultDetail" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardElevation="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/searchItemArtistName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{item.artistName}"
+                tools:text="Artist name" />
+
+            <TextView
+                android:id="@+id/searchItemTrackName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{item.trackName}"
+                tools:text="Track name" />
+
+            <TextView
+                android:id="@+id/searchItemGenreName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{item.primaryGenreName}"
+                tools:text="Genre name" />
+
+            <ImageView
+                android:id="@+id/searchItemArtwork"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

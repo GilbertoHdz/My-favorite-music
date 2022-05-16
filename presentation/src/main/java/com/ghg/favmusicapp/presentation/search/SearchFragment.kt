@@ -13,6 +13,8 @@ import kotlin.reflect.KClass
 @AndroidEntryPoint
 class SearchFragment : BaseFragment<SearchBinding, SearchViewData, SearchViewModel>() {
 
+  private val adapter by lazy { SearchAdapter() }
+
   override val layoutId = R.layout.search
 
   override val viewModelClass: KClass<SearchViewModel> = SearchViewModel::class
@@ -32,6 +34,8 @@ class SearchFragment : BaseFragment<SearchBinding, SearchViewData, SearchViewMod
     viewLifecycleOwner: LifecycleOwner
   ) {
     super.initView(binding, viewData, savedInstanceState, viewLifecycleOwner)
+    viewData.searchResult.observe(viewLifecycleOwner) { result -> adapter.submitList(result) }
+    binding.searchResultList.adapter = adapter
   }
 
   private fun handleNavigation(target: SearchViewModel.NavigationTarget) {

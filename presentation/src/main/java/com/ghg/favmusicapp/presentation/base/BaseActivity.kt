@@ -8,6 +8,13 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelLazy
 import kotlin.reflect.KClass
 
+/**
+ * State management architecture approach
+ * Fast development since we are using [viewbinding] instead of kotlin synthetics
+ * [TBinding] as View
+ * [TView] as ViewData
+ * [TViewModel] as ViewModel
+ */
 abstract class BaseActivity<TBinding : ViewDataBinding, TView : Any, TViewModel : BaseViewModel<TView>> : AppCompatActivity() {
 
   @get:LayoutRes
